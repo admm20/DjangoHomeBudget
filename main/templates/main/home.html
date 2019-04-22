@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <a href="/signup">Rejestracja</a>
+    <a href="/accounts/login">Logowanie</a>
+    {% if user %}
+        <span>Hi {{ user.username }}</span>
+        <a href="/accounts/logout">Wyloguj</a>
+        {% else %}
+        <span>Nie jesteś zalogowany</span>
+    {% endif %}
+    <hr>
+{% endblock %}
