@@ -1,13 +1,41 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-    <a href="/signup">Rejestracja</a>
-    <a href="/accounts/login">Logowanie</a>
-    {% if user %}
-        <span>Hi {{ user.username }}</span>
-        <a href="/accounts/logout">Wyloguj</a>
-        {% else %}
-        <span>Nie jesteś zalogowany</span>
-    {% endif %}
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">HomeBudget</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Strona główna <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                {% if user %}
+                    <span style="color:whitesmoke;margin-right:10px;">Witaj {{ user.username }}</span>
+                    <a class="btn btn-secondary my-2 my-sm-0" href="/accounts/logout">Wyloguj</a>
+                {% else %}
+                    <span style="color:whitesmoke;margin-right:10px;">Nie jesteś zalogowany</span>
+                    <a class="btn btn-secondary my-2 my-sm-0" style="margin-right:10px;" href="/signup">Rejestracja</a>
+                    <a class="btn btn-secondary my-2 my-sm-0" href="/accounts/login">Logowanie</a>
+                {% endif %}
+            </form>
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+    
+        <div class="starter-template">
+            <h1>Projekt</h1>
+            <p class="lead">Aplikacja do zarządzania budżetem domowym</p>
+        </div>
+    
+    </main>
+
     <hr>
 {% endblock %}
