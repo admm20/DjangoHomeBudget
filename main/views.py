@@ -12,7 +12,14 @@ def home(request):
     user = None
     if request.user.is_authenticated:
         user = request.user
+    print(request.user)
     return render(request, "main/home.html", {'user': user})
+
+def userpanel(request):
+    if request.user.is_authenticated:
+        return redirect('/signup/')
+    else:
+        return redirect('/home/')
 
 # def user_logout(request):
 #     if request.user.is_authenticated:
@@ -21,6 +28,10 @@ def home(request):
 
 # https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
 def signup(request):
+
+    if request.user.is_authenticated:
+        return redirect('/home/')
+
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -32,4 +43,5 @@ def signup(request):
             return redirect('/home')
     else:
         form = SignUpForm()
-    return render(request, 'main/signup.html', {'form': form})
+        
+    return render(request, 'main/signup.html', {'form': form, 'user': None})
