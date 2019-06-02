@@ -24,6 +24,9 @@ from main import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('home/', views.home, name='home'),
+    path('balance/', views.balance, name='balance'),
+    path('income/', views.income, name='income'),
+    path('expenses/', views.expenses, name='expenses'),
     path('userpanel/', views.userpanel, name='userpanel'),
     path('accounts/', include('django.contrib.auth.urls')), #log in
     path('signup/', views.signup, name='signup'), #registration

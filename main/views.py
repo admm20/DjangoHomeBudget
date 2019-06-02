@@ -15,16 +15,33 @@ def home(request):
     print(request.user)
     return render(request, "main/home.html", {'user': user})
 
-def userpanel(request):
+def balance(request):
     if request.user.is_authenticated:
-        return redirect('/signup/')
+        user = request.user
+        return render(request, "main/balance.html", {'user': user})
     else:
         return redirect('/home/')
 
-# def user_logout(request):
-#     if request.user.is_authenticated:
-#         logout(request)
-#     return HttpResponse("Wylogowano")
+def income(request):
+    if request.user.is_authenticated:
+        user = request.user
+        return render(request, "main/income.html", {'user': user})
+    else:
+        return redirect('/home/')
+
+def expenses(request):
+    if request.user.is_authenticated:
+        user = request.user
+        return render(request, "main/expenses.html", {'user': user})
+    else:
+        return redirect('/home/')
+
+def userpanel(request):
+    if request.user.is_authenticated:
+        user = request.user
+        return render(request, "main/userpanel.html", {'user': user})
+    else:
+        return redirect('/home/')
 
 # https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
 def signup(request):
