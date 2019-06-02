@@ -33,9 +33,9 @@ def income(request):
     if request.user.is_authenticated:
         script = None
         # load data from DB and insert it into <script>
-        with open('main/scripts/incomeChart.js', 'r') as file:
+        with open('main/scripts/incomeChart.js', 'r', encoding='utf-8') as file:
             script = file.read()
-
+            
         script = "<script>" + script
         script = script + "</script>"
 

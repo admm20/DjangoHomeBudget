@@ -2,20 +2,29 @@
 
 {% block content %}
 
-    <main role="main" class="container">
-    
-        <div class="starter-template">
-            <h1>Przychód</h1>
-            <p class="lead">
-                
+<main role="main" class="container">
 
-            </p>
-        </div>
-    
-    </main>
+    <div class="starter-template">
+        <h1>Przychód</h1>
+        <p class="lead">
 
-    <hr>
 
-    {{ chartScript | safe}}
+        </p>
+    </div>
+    <!-- WYKRES -->
+    <div class="income-chart">
+        <h1>Wykres:</h1>
+        <p>
+            <canvas id="income-chart"></canvas>
+        </p>
+    </div>
+    <!-- KONIEC WYKRESU -->
+</main>
+
+
+
+<hr>
+
+{{ chartScript | safe}}
 
 {% endblock %}
