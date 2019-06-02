@@ -34,8 +34,21 @@
             <h1>Projekt</h1>
             <p class="lead">Aplikacja do zarządzania budżetem domowym</p>
         </div>
+
+        <!-- PRZYKŁADOWY WYKRES -->
+        <div class="sample-chart">
+            <h1>Wykres:</h1>
+            <p>
+                <canvas id="expanditure-chart"></canvas>
+            </p>
+        </div>
+        <!-- KONIEC PRZYKŁADOWEGO WYKRESU -->
     
     </main>
 
     <hr>
+
+    {% load staticfiles %}
+    <script src="{% static 'main/chartManager.js' %}"></script>
+
 {% endblock %}
