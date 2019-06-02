@@ -22,7 +22,7 @@ from django.contrib.auth import views as auth_views
 from main import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.firstpage, name='firstpage'),
     path('home/', views.home, name='home'),
     path('balance/', views.balance, name='balance'),
     path('income/', views.income, name='income'),
@@ -31,4 +31,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')), #log in
     path('signup/', views.signup, name='signup'), #registration
     path('admin/', admin.site.urls),
+    path('firstpage/', views.firstpage, name='firstpage'),
 ]

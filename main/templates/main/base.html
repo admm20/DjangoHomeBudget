@@ -18,11 +18,50 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <style>
-        body {
-            padding-top: 5rem;
-        }
-    </style>
+        <style>
+            body {
+                padding-top: 5rem;
+            }
+    
+            .content {
+                width: 1000px;
+                margin: 0 auto;
+            }
+    
+            .h2signup {
+                text-align: center;
+            }
+    
+            .form
+            {
+                text-align: center;
+            }
+    
+            .form input {
+                width: 300px;
+                border-radius: 5px;
+            }
+            .helptext ul {
+                width: 480px;
+                text-align: justify;
+                margin: 0 auto;
+            }
+                
+            .choice {
+                width: 500px;
+                margin: 0 auto;
+            }
+
+            .choice button {
+                color: #fff;
+                width: 200px;
+                height: 150px;
+                margin: 0 auto;
+                background-color: #28a745;
+                font-size: 24px;
+            }
+
+        </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 
@@ -37,11 +76,10 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/home/">Strona główna </a>
-                </li>
-
                 {% if user %}
+                <li class="nav-item">
+                        <a class="nav-link" href="/home/">Strona główna </a>
+                    </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/balance/">Bilans </a>
                 </li>
@@ -54,6 +92,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/userpanel/">Panel użytkownika </a>
                 </li>
+                {% elif not user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/firstpage/">Strona główna </a>
+                </li>
                 {% endif %}
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -61,7 +103,6 @@
                 <span style="color:whitesmoke;margin-right:10px;">Witaj {{ user.username }}</span>
                 <a class="btn btn-secondary my-2 my-sm-0" href="/accounts/logout">Wyloguj</a>
                 {% else %}
-                <span style="color:whitesmoke;margin-right:10px;">Nie jesteś zalogowany</span>
                 <a class="btn btn-secondary my-2 my-sm-0" style="margin-right:10px;" href="/signup">Rejestracja</a>
                 <a class="btn btn-secondary my-2 my-sm-0" href="/accounts/login">Logowanie</a>
                 {% endif %}
