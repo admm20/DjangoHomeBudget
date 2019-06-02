@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>Projekt</h1>
+        <p class="lead">Aplikacja do zarządzania budżetem domowym</p>
+    </div>
+    <div class="choice">
+        <a href="/accounts/login/">
+            <button>
+                Logowanie
+            </button>
+        </a>
+
+        <a href="/signup/">
+            <button>
+                Rejestracja
+            </button>
+        </a>
+    </div>
+</main>
+
+<hr>
+
+{% load staticfiles %}
+<script src="{% static 'main/chartManager.js' %}"></script>
+
+{% endblock %}

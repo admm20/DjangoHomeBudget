@@ -8,6 +8,13 @@ from main.forms import SignUpForm
 
 # Create your views here.
 
+def firstpage(request):
+    user = None
+    if request.user.is_authenticated:
+        user = request.user
+    print(request.user)
+    return render(request, "main/firstpage.html", {'user': user})
+
 def home(request):
     user = None
     if request.user.is_authenticated:

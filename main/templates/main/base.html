@@ -46,7 +46,21 @@
                 text-align: justify;
                 margin: 0 auto;
             }
-    
+                
+            .choice {
+                width: 500px;
+                margin: 0 auto;
+            }
+
+            .choice button {
+
+                width: 200px;
+                height: 150px;
+                margin: 0 auto;
+                background-color: lightgrey;
+                font-size: 24px;
+            }
+
         </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
@@ -62,11 +76,10 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/home/">Strona główna </a>
-                </li>
-
                 {% if user %}
+                <li class="nav-item">
+                        <a class="nav-link" href="/home/">Strona główna </a>
+                    </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/balance/">Bilans </a>
                 </li>
@@ -78,6 +91,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/userpanel/">Panel użytkownika </a>
+                </li>
+                {% elif not user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/firstpage/">Strona główna </a>
                 </li>
                 {% endif %}
             </ul>
