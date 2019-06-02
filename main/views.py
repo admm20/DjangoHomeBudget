@@ -6,6 +6,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, User
 from main.forms import SignUpForm
 
+from main.models import Cash
+
 # Create your views here.
 
 def firstpage(request):
@@ -32,7 +34,20 @@ def balance(request):
 def income(request):
     if request.user.is_authenticated:
         user = request.user
-        return render(request, "main/income.html", {'user': user})
+        
+        number = request.POST.get('number', '')
+        datea = request.POST.get('date', '')
+
+        if number != "":
+            cashModel = Cash(money=float(number), date=datea)
+            cashModel.save()
+
+        dataCash = Cash.objects.all()
+
+        #return render(request, "main/income.html", {'user': user})
+        return render(request, "main/income.html", {'user': user, 'dataCash': dataCash})
+
+
     else:
         return redirect('/home/')
 
