@@ -6,7 +6,7 @@ var myChart = new Chart(ctx, {
         labels: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
         datasets: [{
             label: 'przychód',
-            data: [0, 100, 200, 1500, 5000, 2000, 3000, 4000, 5000, 6000, 300, 4200],
+            data: [CHARTDATA],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

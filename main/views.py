@@ -6,6 +6,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, User
 from main.forms import SignUpForm
 
+import re
+
 # Create your views here.
 
 def firstpage(request):
@@ -38,6 +40,9 @@ def income(request):
             
         script = "<script>" + script
         script = script + "</script>"
+
+        #TODO: insert income from database
+        script = re.sub('CHARTDATA', '0, 100, 200, 1500, 5000, 2000, 3000, 4000, 5000, 6000, 300, 4200', script)
 
         user = request.user
         return render(request, "main/income.html", {'user': user, 'chartScript': script})
