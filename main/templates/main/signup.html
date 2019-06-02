@@ -1,9 +1,9 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<div class = "signupForm">
+<div class = "form">
   <h2 class="h2signup">Rejestracja</h2>
-  <form method="post" auti>
+  <form method="post">
     {% csrf_token %}
     {% for field in form %}
       <p>

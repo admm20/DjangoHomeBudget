@@ -32,12 +32,12 @@
                 text-align: center;
             }
     
-            .signupForm
+            .form
             {
                 text-align: center;
             }
     
-            .signupForm input {
+            .form input {
                 width: 300px;
                 border-radius: 5px;
             }
@@ -53,11 +53,11 @@
             }
 
             .choice button {
-
+                color: #fff;
                 width: 200px;
                 height: 150px;
                 margin: 0 auto;
-                background-color: lightgrey;
+                background-color: #28a745;
                 font-size: 24px;
             }
 
@@ -103,7 +103,6 @@
                 <span style="color:whitesmoke;margin-right:10px;">Witaj {{ user.username }}</span>
                 <a class="btn btn-secondary my-2 my-sm-0" href="/accounts/logout">Wyloguj</a>
                 {% else %}
-                <span style="color:whitesmoke;margin-right:10px;">Nie jesteś zalogowany</span>
                 <a class="btn btn-secondary my-2 my-sm-0" style="margin-right:10px;" href="/signup">Rejestracja</a>
                 <a class="btn btn-secondary my-2 my-sm-0" href="/accounts/login">Logowanie</a>
                 {% endif %}
