@@ -6,7 +6,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, User
 from main.forms import SignUpForm
 
-from main.models import Cash
+from main.models import Cash, Category, Products
 
 # Create your views here.
 
@@ -36,10 +36,10 @@ def income(request):
         user = request.user
         
         number = request.POST.get('number', '')
-        datea = request.POST.get('date', '')
+        date = request.POST.get('date', '')
 
         if number != "":
-            cashModel = Cash(money=float(number), date=datea)
+            cashModel = Cash(money=float(number), date=date)
             cashModel.save()
 
         dataCash = Cash.objects.all()
@@ -54,7 +54,22 @@ def income(request):
 def expenses(request):
     if request.user.is_authenticated:
         user = request.user
-        return render(request, "main/expenses.html", {'user': user})
+        category = Category.objects.all()
+
+        number = request.POST.get('number', '')
+        date = request.POST.get('date', '')
+        categoryName = request.POST.get('categoryName', '')
+        product = request.POST.get('product', '')
+
+        if product != "" and number != "":
+            getElement = Category.objects.get(nameOfCategory = categoryName)
+            getIdFromElement = getElement.id
+
+            productModel = Products(nameOfProduct = product, price = int(number), categoryId = int(getIdFromElement), date = date)
+            productModel.save()
+
+        products = Products.objects.all()
+        return render(request, "main/expenses.html", {'user': user, 'category': category, 'products': products})
     else:
         return redirect('/home/')
 
