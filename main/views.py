@@ -31,8 +31,16 @@ def balance(request):
 
 def income(request):
     if request.user.is_authenticated:
+        script = None
+        # load data from DB and insert it into <script>
+        with open('main/scripts/incomeChart.js', 'r') as file:
+            script = file.read()
+
+        script = "<script>" + script
+        script = script + "</script>"
+
         user = request.user
-        return render(request, "main/income.html", {'user': user})
+        return render(request, "main/income.html", {'user': user, 'chartScript': script})
     else:
         return redirect('/home/')
 
