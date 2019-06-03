@@ -21,6 +21,7 @@ class Products(models.Model):
     price = models.CharField(max_length = 250)
     categoryId = models.IntegerField(default=1)
     date = models.CharField(max_length = 250)
+    userId = models.IntegerField(default=1) 
 
 class Users(models.Model):
     id = models.AutoField(primary_key=True)

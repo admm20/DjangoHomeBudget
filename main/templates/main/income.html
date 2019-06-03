@@ -15,7 +15,12 @@
             <input type="submit" name="submit">
         </form>
     </div>
-    <table>
+    <table border=1>
+        <tr>
+            <td>Money</td>
+            <td>Date</td>
+            <td>UserId</td>
+        </tr>
         {% for da in dataCash %}
         <tr>
             <td>{{da.money}}</td>
@@ -36,10 +41,12 @@
     <!-- WYKRES -->
     <div class="income-chart">
         <button id="yearButton" type="button" class="btn btn-primary" style="width:80px;">Rok</button>
-        <button id="monthButton" type="button" class="btn btn-light" style="width:80px; margin-left: 5px;">Miesiąc</button>
+        <button id="monthButton" type="button" class="btn btn-light"
+            style="width:80px; margin-left: 5px;">Miesiąc</button>
         <input type="number" value="2019" class="form-control" style="width:170px; margin-top: 5px;" name="year">
 
-        <select id="monthPicker" class="form-control" style="width:170px; margin-top: 5px; display: inline-block;" name="month" hidden="">
+        <select id="monthPicker" class="form-control" style="width:170px; margin-top: 5px; display: inline-block;"
+            name="month" hidden="">
             <option value="1">Styczeń</option>
             <option value="2">Luty</option>
             <option value="3">Marzec</option>

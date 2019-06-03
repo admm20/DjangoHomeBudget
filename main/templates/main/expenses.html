@@ -19,13 +19,21 @@
             <input type="submit" name="submit">
         </form>
     </div>
-<table>
+<table border=1>
+        <tr>
+                <td>nameOfProduct</td>
+                <td>price</td>
+                <td>categoryId</td>
+                <td>date</td>
+                <td>userId</td>
+            </tr>
     {% for da in products %}
         <tr>
             <td>{{da.nameOfProduct}}</td>
             <td>{{da.price}}</td>
             <td>{{da.categoryId}}</td>
             <td>{{da.date}}</td>
+            <td>{{da.userId}}</td>
         </tr>
     {% endfor %}
     </table>

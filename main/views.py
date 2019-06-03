@@ -88,10 +88,10 @@ def expenses(request):
             getIdFromElement = getElement.id
 
             productModel = Products(nameOfProduct=product, price=float(
-                number), categoryId=getIdFromElement, date=date)
+                number), categoryId=getIdFromElement, date=date, userId=user.pk )
             productModel.save()
 
-        products = Products.objects.all()
+        products = Products.objects.filter(userId = user.pk)
         return render(request, "main/expenses.html", {'user': user, 'category': category, 'products': products})
     else:
         return redirect('/home/')
