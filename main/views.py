@@ -40,17 +40,6 @@ def balance(request):
 
 def income(request):
     if request.user.is_authenticated:
-        script = None
-        # load data from DB and insert it into <script>
-        with open('main/scripts/incomeChart.js', 'r', encoding='utf-8') as file:
-            script = file.read()
-
-        script = "<script>" + script
-        script = script + "</script>"
-
-        # TODO: insert income from database
-        script = re.sub(
-            'CHARTDATA', '0, 100, 200, 1500, 5000, 2000, 3000, 4000, 5000, 6000, 300, 4200', script)
 
         user = request.user
 
@@ -63,8 +52,28 @@ def income(request):
 
         dataCash = Cash.objects.filter(userId = user.pk)
 
-        # return render(request, "main/income.html", {'user': user})
-        # return render(request, "main/income.html", {'user': user, 'dataCash': dataCash})
+        script = None
+        # load data from DB and insert it into <script>
+        with open('main/scripts/incomeChart.js', 'r', encoding='utf-8') as file:
+            script = file.read()
+
+        script = "<script>" + script
+        script = script + "</script>"
+
+        # insert income from database
+        if not dataCash:
+            script = re.sub('[INCOMEDATA]', 'null', script)
+            script = re.sub('[DATES]', 'null', script)
+        else:
+            incomeData = "["
+            dates = "["
+            for d in dataCash:
+                incomeData = incomeData + d.money + ","
+                dates = dates + "'" + d.date + "'" + ","
+            incomeData = incomeData[:-1] + ']'
+            dates = dates[:-1] + ']'
+            script = re.sub('INCOMEDATA', incomeData, script)
+            script = re.sub('DATES', dates, script)
 
         return render(request, "main/income.html", {'user': user, 'chartScript': script, 'dataCash': dataCash})
 
