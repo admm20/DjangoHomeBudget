@@ -61,7 +61,7 @@ def income(request):
             cashModel = Cash(money=float(number), date=date, userId=user.pk)
             cashModel.save()
 
-        dataCash = Cash.objects.all()
+        dataCash = Cash.objects.filter(userId = user.pk)
 
         # return render(request, "main/income.html", {'user': user})
         # return render(request, "main/income.html", {'user': user, 'dataCash': dataCash})
