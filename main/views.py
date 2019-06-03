@@ -95,6 +95,14 @@ def expenses(request):
 def userpanel(request):
     if request.user.is_authenticated:
         user = request.user
+
+        newCategory = request.POST.get('addcategory', '')
+
+        if newCategory != "":
+            if not Category.objects.filter(nameOfCategory = newCategory).exists():
+                categoryNewModel = Category(nameOfCategory = newCategory)
+                categoryNewModel.save()
+
         return render(request, "main/userpanel.html", {'user': user})
     else:
         return redirect('/home/')
