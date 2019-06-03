@@ -6,7 +6,11 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, User
 from main.forms import SignUpForm
 
+
 from main.models import Cash, Category, Products
+
+import re
+
 
 # Create your views here.
 
@@ -33,7 +37,19 @@ def balance(request):
 
 def income(request):
     if request.user.is_authenticated:
+        script = None
+        # load data from DB and insert it into <script>
+        with open('main/scripts/incomeChart.js', 'r', encoding='utf-8') as file:
+            script = file.read()
+            
+        script = "<script>" + script
+        script = script + "</script>"
+
+        #TODO: insert income from database
+        script = re.sub('CHARTDATA', '0, 100, 200, 1500, 5000, 2000, 3000, 4000, 5000, 6000, 300, 4200', script)
+
         user = request.user
+
         
         number = request.POST.get('number', '')
         date = request.POST.get('date', '')
@@ -45,8 +61,11 @@ def income(request):
         dataCash = Cash.objects.all()
 
         #return render(request, "main/income.html", {'user': user})
-        return render(request, "main/income.html", {'user': user, 'dataCash': dataCash})
+        #return render(request, "main/income.html", {'user': user, 'dataCash': dataCash})
 
+
+
+        return render(request, "main/income.html", {'user': user, 'chartScript': script, 'dataCash': dataCash})
 
     else:
         return redirect('/home/')
