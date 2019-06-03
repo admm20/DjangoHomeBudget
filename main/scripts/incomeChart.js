@@ -55,3 +55,17 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
+function yearButtonPressed(){
+    document.getElementById("monthPicker").hidden=true;
+    document.getElementById('yearButton').className = "btn btn-primary";
+    document.getElementById('monthButton').className = "btn btn-light";
+}
+function monthButtonPressed(){
+    document.getElementById("monthPicker").hidden=false;
+    document.getElementById('yearButton').className = "btn btn-light";
+    document.getElementById('monthButton').className = "btn btn-primary";
+}
+
+document.getElementById("yearButton").addEventListener("click", yearButtonPressed);
+document.getElementById("monthButton").addEventListener("click", monthButtonPressed);

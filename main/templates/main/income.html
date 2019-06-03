@@ -16,24 +16,43 @@
         </form>
     </div>
     <table>
-    {% for da in dataCash %}
+        {% for da in dataCash %}
         <tr>
             <td>{{da.money}}</td>
             <td>{{da.date}}</td>
         </tr>
-    {% endfor %}
+        {% endfor %}
     </table>
 
 
-<hr>
+    <hr>
 
-        <p class="lead">
+    <p class="lead">
 
 
-        </p>
+    </p>
     </div>
     <!-- WYKRES -->
     <div class="income-chart">
+        <button id="yearButton" type="button" class="btn btn-primary" style="width:80px;">Rok</button>
+        <button id="monthButton" type="button" class="btn btn-light" style="width:80px; margin-left: 5px;">Miesiąc</button>
+        <input type="number" value="2019" class="form-control" style="width:170px; margin-top: 5px;" name="year">
+
+        <select id="monthPicker" class="form-control" style="width:170px; margin-top: 5px; display: inline-block;" name="month" hidden="">
+            <option value="1">Styczeń</option>
+            <option value="2">Luty</option>
+            <option value="3">Marzec</option>
+            <option value="4">Kwiecień</option>
+            <option value="5">Maj</option>
+            <option value="6">Czerwiec</option>
+            <option value="7">Lipiec</option>
+            <option value="8">Sierpień</option>
+            <option value="9">Wrzesień</option>
+            <option value="10">Październik</option>
+            <option value="11">Listopad</option>
+            <option value="12">Grudzień</option>
+        </select>
+
         <h1>Wykres:</h1>
         <p>
             <canvas id="income-chart"></canvas>
