@@ -101,6 +101,10 @@ def expenses(request):
             productModel.save()
 
         products = Products.objects.filter(userId = user.pk)
+
+        for x in products:
+            x.categoryId = Category.objects.get(id = x.categoryId).nameOfCategory
+            
         return render(request, "main/expenses.html", {'user': user, 'category': category, 'products': products})
     else:
         return redirect('/home/')
