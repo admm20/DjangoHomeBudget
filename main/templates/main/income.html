@@ -6,6 +6,27 @@
 
     <div class="starter-template">
         <h1>Przychód</h1>
+
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="number" name="number" step="0.01" required>
+            <input type="date" name="date" required>
+            <input type="submit" name="submit">
+        </form>
+    </div>
+    <table>
+    {% for da in dataCash %}
+        <tr>
+            <td>{{da.money}}</td>
+            <td>{{da.date}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+
+<hr>
+
         <p class="lead">
 
 
@@ -26,5 +47,6 @@
 <hr>
 
 {{ chartScript | safe}}
+
 
 {% endblock %}

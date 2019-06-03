@@ -18,24 +18,26 @@ class Category(models.Model):
 class Products(models.Model):
     id = models.AutoField(primary_key = True)
     nameOfProduct = models.CharField(max_length = 250)
-    price = models.IntegerField()
-    categoryId = models.ForeignKey(Category, on_delete=models.CASCADE)
+    price = models.IntegerField(default=1)
+    categoryId = models.IntegerField(default=1)
+    date = models.CharField(max_length = 250)
 
 class Users(models.Model):
     id = models.AutoField(primary_key=True)
     userName = models.CharField(max_length = 250)
     userPassword = models.CharField(max_length = 250)
-    permissionId = models.ForeignKey(Permission, on_delete=models.CASCADE)
-    groupOfUsersId = models.ForeignKey(GroupOfUsers, on_delete=models.CASCADE)
+    permissionId = models.IntegerField(default=1)
+    groupOfUsersId = models.IntegerField(default=1)
 
 class Cash(models.Model):
     id = models.AutoField(primary_key = True)
-    money = models.DecimalField(decimal_places=2, max_digits=20)
-    date = models.DateTimeField(auto_now_add= True)
-    userId = models.ForeignKey(Users, on_delete=models.CASCADE)
+    money = models.CharField(max_length = 250)
+    date = models.CharField(max_length = 250)
+    #userId = models.IntegerField(default=1)
 
-class Order(models.Model):
+'''class Order(models.Model):
     id = models.AutoField(primary_key = True)
-    date = models.DateTimeField(auto_now_add = True)
-    userNameId = models.ForeignKey(Users, on_delete=models.CASCADE)
-    nameOfProductId = models.ForeignKey(Products, on_delete=models.CASCADE)
+    date = models.CharField(max_length = 250)
+    #userNameId = models.IntegerField(default=1)
+    nameOfProductId = models.IntegerField(default=1)
+'''

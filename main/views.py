@@ -6,7 +6,11 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, User
 from main.forms import SignUpForm
 
+
+from main.models import Cash, Category, Products
+
 import re
+
 
 # Create your views here.
 
@@ -45,14 +49,46 @@ def income(request):
         script = re.sub('CHARTDATA', '0, 100, 200, 1500, 5000, 2000, 3000, 4000, 5000, 6000, 300, 4200', script)
 
         user = request.user
-        return render(request, "main/income.html", {'user': user, 'chartScript': script})
+
+        
+        number = request.POST.get('number', '')
+        date = request.POST.get('date', '')
+
+        if number != "":
+            cashModel = Cash(money=float(number), date=date)
+            cashModel.save()
+
+        dataCash = Cash.objects.all()
+
+        #return render(request, "main/income.html", {'user': user})
+        #return render(request, "main/income.html", {'user': user, 'dataCash': dataCash})
+
+
+
+        return render(request, "main/income.html", {'user': user, 'chartScript': script, 'dataCash': dataCash})
+
     else:
         return redirect('/home/')
 
 def expenses(request):
     if request.user.is_authenticated:
         user = request.user
-        return render(request, "main/expenses.html", {'user': user})
+        category = Category.objects.all()
+
+        number = request.POST.get('number', '')
+        date = request.POST.get('date', '')
+        categoryName = request.POST.get('categoryName', '')
+        product = request.POST.get('product', '')
+
+        if product != "" and number != "":
+            getElement = Category.objects.get(nameOfCategory = categoryName)
+            getIdFromElement = getElement.id
+
+            productModel = Products(nameOfProduct = product, price = int(number), categoryId = int(getIdFromElement), date = date)
+            productModel.save()
+
+        products = Products.objects.all()
+        return render(request, "main/expenses.html", {'user': user, 'category': category, 'products': products})
     else:
         return redirect('/home/')
 
