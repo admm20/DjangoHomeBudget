@@ -9,11 +9,12 @@
             <p class="lead">
                 zmiana imienia/nazwiska/hasła
             </p>
-            <h1>Dodaj kategorię</h1>
+            <h1>Dodaj/Usuń kategorię</h1>
             <form method="post">
                 {% csrf_token %}
-                <input type="text" name="addcategory" required placeholder="Nowa kategoria">
-                <input type="submit" name="submit">
+                <input type="text" name="addcategory" required placeholder="Kategoria">
+                <input type="submit" name="addNewCategoryButton" value="Add new Category">
+                <input type="submit" name="deleteCategoryButton" value="Delete Category">
             </form>
         </div>
     

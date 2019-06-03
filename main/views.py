@@ -99,9 +99,12 @@ def userpanel(request):
         newCategory = request.POST.get('addcategory', '')
 
         if newCategory != "":
-            if not Category.objects.filter(nameOfCategory = newCategory).exists():
-                categoryNewModel = Category(nameOfCategory = newCategory)
-                categoryNewModel.save()
+            if 'addNewCategoryButton' in request.POST:
+                if not Category.objects.filter(nameOfCategory = newCategory).exists():
+                    categoryNewModel = Category(nameOfCategory = newCategory)
+                    categoryNewModel.save()
+            elif 'deleteCategoryButton' in request.POST:
+                Category.objects.filter(nameOfCategory = newCategory).delete()
 
         return render(request, "main/userpanel.html", {'user': user})
     else:
