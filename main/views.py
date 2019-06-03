@@ -84,7 +84,7 @@ def expenses(request):
             getElement = Category.objects.get(nameOfCategory = categoryName)
             getIdFromElement = getElement.id
 
-            productModel = Products(nameOfProduct = product, price = int(number), categoryId = int(getIdFromElement), date = date)
+            productModel = Products(nameOfProduct = product, price = float(number), categoryId = getIdFromElement, date = date)
             productModel.save()
 
         products = Products.objects.all()

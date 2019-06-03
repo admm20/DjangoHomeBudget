@@ -18,7 +18,7 @@ class Category(models.Model):
 class Products(models.Model):
     id = models.AutoField(primary_key = True)
     nameOfProduct = models.CharField(max_length = 250)
-    price = models.IntegerField(default=1)
+    price = models.CharField(max_length = 250)
     categoryId = models.IntegerField(default=1)
     date = models.CharField(max_length = 250)
 
