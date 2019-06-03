@@ -16,6 +16,25 @@
                 <input type="submit" name="addNewCategoryButton" value="Add new Category">
                 <input type="submit" name="deleteCategoryButton" value="Delete Category">
             </form>
+
+            <h1>Zminaa danych użytkownika</h1>
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="newUserName" required placeholder="UserName">
+                <input type="submit" name="newUserNameButton" value="Add new UserName">
+            </form>
+            <form method="post">
+                    {% csrf_token %}
+                <input type="text" name="newName" required placeholder="New name">
+                <input type="submit" name="newNameButton" value="Add new Name">
+            </form>
+            <form method="post">
+                    {% csrf_token %}
+                <input type="text" name="newUserSurname" required placeholder="Surname">
+                <input type="submit" name="newUserSurnameButton" value="Add new Surname">
+
+            </form>
+
         </div>
     
     </main>

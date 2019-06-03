@@ -33,7 +33,7 @@ class Cash(models.Model):
     id = models.AutoField(primary_key = True)
     money = models.CharField(max_length = 250)
     date = models.CharField(max_length = 250)
-    #userId = models.IntegerField(default=1)
+    userId = models.IntegerField(default=1)
 
 '''class Order(models.Model):
     id = models.AutoField(primary_key = True)
