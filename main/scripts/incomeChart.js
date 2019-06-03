@@ -11,10 +11,22 @@ function daysInMonth(iMonth, iYear){
 }
 
 
-function showAnnualIncome(data){
+function showAnnualIncome(year){
 
     if(myChart){
         myChart.destroy();
+    }
+
+    let chartData = [];
+    for(let i=0; i<12; i++){
+        chartData[i] = 0;
+    }
+
+    for(let i=0; i<incomeData.length; i++){
+        if(dates[i].substring(0, 4) == year){
+            let idx = parseInt(dates[i].substring(5, 7));
+            chartData[idx-1] += incomeData[i];
+        }
     }
 
     let ctx = document.getElementById('income-chart').getContext('2d');
@@ -24,7 +36,7 @@ function showAnnualIncome(data){
             labels: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
             datasets: [{
                 label: 'przychód',
-                data: [CHARTDATA],/*
+                data: chartData,/*
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -75,7 +87,7 @@ function showAnnualIncome(data){
     });
 }
 
-function showMonthlyIncome(data, daysInMonth){
+function showMonthlyIncome(year, month){
 
     if(myChart){
         myChart.destroy();
@@ -84,8 +96,22 @@ function showMonthlyIncome(data, daysInMonth){
     let ctx = document.getElementById('income-chart').getContext('2d');
 
     let daysArray = [];
-    for(let i=1; i<=daysInMonth; i++){
+    for(let i=1; i<=daysInMonth(month, year); i++){
         daysArray.push(i);
+    }
+
+    let chartData = [];
+    for(let i=0; i<daysArray.length; i++){
+        chartData[i] = 0;
+    }
+
+    for(let i=0; i<incomeData.length; i++){
+        if(dates[i].substring(0, 4) == year){
+            let mon = parseInt(dates[i].substring(5, 7));
+            if(mon-1 == month){
+                chartData[parseInt(dates[i].substring(8, 10))-1] += incomeData[i];
+            }
+        }
     }
 
     myChart = new Chart(ctx, {
@@ -94,35 +120,7 @@ function showMonthlyIncome(data, daysInMonth){
             labels: daysArray,
             datasets: [{
                 label: 'przychód',
-                data: [CHARTDATA],/*
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],*/
+                data: chartData,
                 borderWidth: 1
             }]
         },
@@ -145,21 +143,40 @@ function showMonthlyIncome(data, daysInMonth){
     });
 }
 
+var option = "annual"; // annual / monthly
+
+function updateGraph(){
+    if(option == "annual"){
+        showAnnualIncome( document.getElementById('yearField').value );
+    }
+    else{
+
+        var monthPicker = document.getElementById("monthPicker");
+        var month = monthPicker.options[monthPicker.selectedIndex].value - 1;
+
+        showMonthlyIncome( document.getElementById('yearField').value, month );
+    }
+}
 
 function yearButtonPressed(){
+    option = "annual";
     document.getElementById("monthPicker").hidden=true;
     document.getElementById('yearButton').className = "btn btn-primary";
     document.getElementById('monthButton').className = "btn btn-light";
-    showAnnualIncome(null);
+    updateGraph()
 }
 function monthButtonPressed(){
+    option = "monthly";
     document.getElementById("monthPicker").hidden=false;
     document.getElementById('yearButton').className = "btn btn-light";
     document.getElementById('monthButton').className = "btn btn-primary";
-    showMonthlyIncome(null, 31);
+    updateGraph()
 }
 
 document.getElementById("yearButton").addEventListener("click", yearButtonPressed);
 document.getElementById("monthButton").addEventListener("click", monthButtonPressed);
 
-showAnnualIncome(null);
+document.getElementById("yearField").addEventListener("change", updateGraph)
+document.getElementById("monthPicker").addEventListener("change", updateGraph)
+
+showAnnualIncome( document.getElementById("yearField").value );
