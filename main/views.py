@@ -12,6 +12,8 @@ from main.models import Cash, Category, Products
 import re
 import json
 
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -168,30 +170,12 @@ def userpanel(request):
                 saveNewUserName = User.objects.get(id = user.pk)
                 saveNewUserName.last_name = newUserSurname
                 saveNewUserName.save()
-        '''elif 'changePasswordButton' in request.POST:
+        elif 'changePasswordButton' in request.POST:
             changePassword = request.POST.get('changePassword', '')
             if changePassword != "":
                 saveNewPassword = User.objects.get(id = user.pk)
-                saveNewPassword.password = changePassword
+                saveNewPassword.set_password(changePassword)
                 saveNewPassword.save()
-            '''
-        '''elif 'newPassword' in request.POST:
-            form = ChangePassword(request.POST)
-            if form.is_valid():
-                form.save()
-            else:
-                form = ChangePassword()
-            return render(request, "main/userpanel.html", {'form': form, 'user': user})'''
-        
-
-        '''if request.method == 'POST':
-            form = ChangePassword(request.POST)
-            if form.is_valid():
-                a = form.objects.get(id = user.pk)
-                a.save()
-        else:
-            form = ChangePassword()'''
-
         return render(request, "main/userpanel.html", {'user': user})
     else:
         return redirect('/home/')
