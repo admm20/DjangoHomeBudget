@@ -4,13 +4,13 @@
 
 <main role="main" class="container">
 
-    <div class="content">
+    <!--<div class="content">-->
         <div class="starter-template">
             <div class = "a">
             <h1>Przychody</h1>
 
 
-            <form method="post" class="incomeForm">
+            <form method="post" class="addForm">
                 {% csrf_token %}
                 <label>Dodaj przychody:</label><br>
                 <input type="number" name="number" step="0.01" required placeholder="Wpłata"><br>
@@ -79,7 +79,7 @@
         </tr>
         {% endfor %}
     </table>
-    </div>
+   <!-- </div>-->
 </main>
 
 
