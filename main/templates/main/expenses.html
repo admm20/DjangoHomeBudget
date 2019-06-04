@@ -21,19 +21,17 @@
     </div>
 <table border=1>
         <tr>
-                <td>nameOfProduct</td>
-                <td>price</td>
-                <td>categoryId</td>
-                <td>date</td>
-                <td>userId</td>
+                <th>Produkt</th>
+                <th>Kategoria</th>
+                <th>Cena</th>
+                <th>Data</th>
             </tr>
     {% for da in products %}
         <tr>
             <td>{{da.nameOfProduct}}</td>
-            <td>{{da.price}}</td>
             <td>{{da.categoryId}}</td>
+            <td>{{da.price}}</td>
             <td>{{da.date}}</td>
-            <td>{{da.userId}}</td>
         </tr>
     {% endfor %}
     </table>
