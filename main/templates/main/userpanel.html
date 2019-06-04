@@ -4,71 +4,45 @@
 
 <main role="main" class="container">
 
-    <div class="starter-template">
-        <h1>Panel użytkownika</h1><br>
-        <form method="post" class="addForm">
-            {% csrf_token %}
-            <h4>Dodaj / Usuń kategorię</h4>
-            <input type="text" name="addcategory" required placeholder="Dodaj / Usuń kategorię"><br>
-            <input type="submit" name="addNewCategoryButton" value="Dodaj kategorię" class="btn btn-success">
-            <input type="submit" name="deleteCategoryButton" value="Usuń kotegorię" class="btn btn-success">
-        </form>
-        <form method="post" class="addForm">
-            <h4>Zmień login:</h4>
-            {% csrf_token %}
-            <input type="text" name="newUserName" required placeholder="Zmień login"><br>
-            <input type="submit" name="newUserNameButton" value="Zmień login" class="btn btn-success">
-            <input type="reset" value="Wyczyść pole" class="btn btn-success">
-        </form>
-        <form method="post" class="addForm">
-            {% csrf_token %}
-            <h4>Zmień imię:</h4>
-            <input type="text" name="newName" required placeholder="Zmień imię"><br>
-            <input type="submit" name="newNameButton" value="Zmień imię" class="btn btn-success">
-            <input type="reset" value="Wyczyść pole" class="btn btn-success">
-        </form>
-        <form method="post" class="addForm">
-            {% csrf_token %}
-            <h4>Zmień nazwisko:</h4>
-            <input type="text" name="newUserSurname" required placeholder="Zmień nazwisko"><br>
-            <input type="submit" name="newUserSurnameButton" value="Zmień nazwisko" class="btn btn-success">
-            <input type="reset" value="Wyczyść pole" class="btn btn-success">
+  <div class="starter-template">
+    <h1>Panel użytkownika</h1><br>
+    <form method="post" class="addForm">
+      {% csrf_token %}
+      <h4>Dodaj / Usuń kategorię</h4>
+      <input type="text" name="addcategory" required placeholder="Dodaj / Usuń kategorię"><br>
+      <input type="submit" name="addNewCategoryButton" value="Dodaj kategorię" class="btn btn-success">
+      <input type="submit" name="deleteCategoryButton" value="Usuń kotegorię" class="btn btn-success">
+    </form>
+    <form method="post" class="addForm">
+      <h4>Zmień login:</h4>
+      {% csrf_token %}
+      <input type="text" name="newUserName" required placeholder="Zmień login"><br>
+      <input type="submit" name="newUserNameButton" value="Zmień login" class="btn btn-success">
+      <input type="reset" value="Wyczyść pole" class="btn btn-success">
+    </form>
+    <form method="post" class="addForm">
+      {% csrf_token %}
+      <h4>Zmień imię:</h4>
+      <input type="text" name="newName" required placeholder="Zmień imię"><br>
+      <input type="submit" name="newNameButton" value="Zmień imię" class="btn btn-success">
+      <input type="reset" value="Wyczyść pole" class="btn btn-success">
+    </form>
+    <form method="post" class="addForm">
+      {% csrf_token %}
+      <h4>Zmień nazwisko:</h4>
+      <input type="text" name="newUserSurname" required placeholder="Zmień nazwisko"><br>
+      <input type="submit" name="newUserSurnameButton" value="Zmień nazwisko" class="btn btn-success">
+      <input type="reset" value="Wyczyść pole" class="btn btn-success">
 
-        </form>
-        <form method="post" class="addForm">
-            {% csrf_token %}
-            <h4>Zmień hasło:</h4>
-            <input type="text" name="changePassword" required placeholder="Zmień hasło"><br>
-            <input type="submit" name="changePasswordButton" value="Zmień hasło" class="btn btn-success">
-            <input type="reset" value="Wyczyść pole" class="btn btn-success">
-
-        </form>
-        <!--
-            <hr>
-            <h2 class="h2signup">Zmień hasło</h2>
-            <form method="post">
-                {% csrf_token %}
-                {% for field in form %}
-                  <p>
-                    {{ field.h4_tag }}<br>
-                    {{ field }}<br>
-                    <div class = "helptext">
-                    {% if field.help_text %}
-                      <small style="color: grey">{{ field.help_text }}</small>
-                    {% endif %}
-                    </div>
-                    {% for error in field.errors %}
-                      <p style="color: red">{{ error }}</p>
-                    {% endfor %}
-                  </p>
-                {% endfor %}
-                <button type="submit" name="newPassword" class="btn btn-success">Utwórz</button>
-                <button type="reset" class="btn btn-success">Reset</button>
-              </form>
-            -->
-    </div>
-
+    </form>
+    <form method="post" class="addForm">
+      {% csrf_token %}
+      <h4>Zmień hasło:</h4>
+      <input type="password" name="changePassword" required placeholder="Zmień hasło"><br>
+      <input type="submit" name="changePasswordButton" value="Zmień hasło" class="btn btn-success">
+      <input type="reset" value="Wyczyść pole" class="btn btn-success">
+    </form>
+  </div>
 </main>
-
 <hr>
 {% endblock %}

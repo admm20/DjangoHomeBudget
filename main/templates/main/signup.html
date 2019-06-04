@@ -1,26 +1,26 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<div class = "form">
+<div class="form">
   <h2 class="h2signup">Rejestracja</h2>
   <form method="post">
     {% csrf_token %}
     {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}<br>
-        <div class = "helptext">
+    <p>
+      {{ field.label_tag }}<br>
+      {{ field }}<br>
+      <div class="helptext">
         {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
+        <small style="color: grey">{{ field.help_text }}</small>
         {% endif %}
-        </div>
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
+      </div>
+      {% for error in field.errors %}
+      <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
     {% endfor %}
     <button type="submit" class="btn btn-success">Utwórz</button>
     <button type="reset" class="btn btn-success">Reset</button>
   </form>
-  </div>
+</div>
 {% endblock %}

@@ -4,11 +4,9 @@
 
 <main role="main" class="container">
 
-    <!--<div class="content">-->
-        <div class="starter-template">
-            <div class = "a">
+    <div class="starter-template">
+        <div class="a">
             <h1>Przychody</h1>
-
 
             <form method="post" class="addForm">
                 {% csrf_token %}
@@ -16,26 +14,18 @@
                 <input type="number" name="number" step="0.01" required placeholder="Wpłata"><br>
                 <label>Dodaj datę przychodu:</label><br>
                 <input type="date" name="date" required><br>
-                <input type="submit" name="submit" class = "btn btn-success" value="Dodaj przychody">
-                <input type="reset" name="reset" class = "btn btn-success" value="Wyczyść formularz">
+                <input type="submit" name="submit" class="btn btn-success" value="Dodaj przychody">
+                <input type="reset" name="reset" class="btn btn-success" value="Wyczyść formularz">
             </form>
         </div>
-        </div>
-        
+    </div>
+    <hr>
 
-
-        <hr>
-
-        <p class="lead">
-
-
-        </p>
-    
     <!-- WYKRES -->
     <h1>Wykres:</h1>
 
     <div class="income-chart">
-        <div class="income-chart_choice">
+
         <button id="yearButton" type="button" class="btn btn-primary" style="width:80px;">Rok</button>
         <button id="monthButton" type="button" class="btn btn-light"
             style="width:80px; margin-left: 5px;">Miesiąc</button>
@@ -58,20 +48,18 @@
             <option value="12">Grudzień</option>
         </select>
 
-        </div>
-        <p>
-            <canvas id="income-chart"></canvas>
-        </p>
     </div>
+    <p>
+        <canvas id="income-chart"></canvas>
+    </p>
     <!-- KONIEC WYKRESU -->
-
     <table border=1>
-        
+
         <tr>
             <th>Money</th>
             <th>Date</th>
         </tr>
-        
+
         {% for da in dataCash %}
         <tr>
             <td>{{da.money}}</td>
@@ -79,14 +67,6 @@
         </tr>
         {% endfor %}
     </table>
-   <!-- </div>-->
 </main>
-
-
-
-<hr>
-
 {{ chartScript | safe}}
-
-
 {% endblock %}

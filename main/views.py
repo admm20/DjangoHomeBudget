@@ -4,7 +4,7 @@ from django.http import HttpResponse
 # SIGN UP:
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, User
-from main.forms import SignUpForm#, ChangePassword
+from main.forms import SignUpForm  # , ChangePassword
 from django.contrib.auth.models import User
 
 from main.models import Cash, Category, Products
@@ -17,19 +17,11 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
-def firstpage(request):
-    user = None
-    if request.user.is_authenticated:
-        user = request.user
-    #print(request.user)
-    return render(request, "main/firstpage.html", {'user': user})
-
-
 def home(request):
     user = None
     if request.user.is_authenticated:
         user = request.user
-    #print(request.user)
+    # print(request.user)
     return render(request, "main/home.html", {'user': user})
 
 
@@ -53,7 +45,7 @@ def income(request):
             cashModel = Cash(money=float(number), date=date, userId=user.pk)
             cashModel.save()
 
-        dataCash = Cash.objects.filter(userId = user.pk)
+        dataCash = Cash.objects.filter(userId=user.pk)
 
         script = None
         # load data from DB and insert it into <script>
@@ -87,7 +79,7 @@ def income(request):
 def expenses(request):
     if request.user.is_authenticated:
         user = request.user
-        #print(user.pk)
+        # print(user.pk)
         category = Category.objects.all()
 
         number = request.POST.get('number', '')
@@ -100,13 +92,13 @@ def expenses(request):
             getIdFromElement = getElement.id
 
             productModel = Products(nameOfProduct=product, price=float(
-                number), categoryId=getIdFromElement, date=date, userId=user.pk )
+                number), categoryId=getIdFromElement, date=date, userId=user.pk)
             productModel.save()
 
-        products = Products.objects.filter(userId = user.pk)
+        products = Products.objects.filter(userId=user.pk)
 
         for x in products:
-            x.categoryId = Category.objects.get(id = x.categoryId).nameOfCategory
+            x.categoryId = Category.objects.get(id=x.categoryId).nameOfCategory
 
         # load data from DB and insert it into <script>
         script = None
@@ -130,9 +122,10 @@ def expenses(request):
                     "date": p.date,
                     "nameOfProduct": p.nameOfProduct
                 })
-            
-            script = re.sub('EXPENSESDATA', json.dumps(expensesData, ensure_ascii=False), script)
-            
+
+            script = re.sub('EXPENSESDATA', json.dumps(
+                expensesData, ensure_ascii=False), script)
+
         return render(request, "main/expenses.html", {'user': user, 'chartScript': script, 'category': category, 'products': products})
     else:
         return redirect('/home/')
@@ -155,25 +148,25 @@ def userpanel(request):
         elif 'newUserNameButton' in request.POST:
             newUserName = request.POST.get('newUserName', '')
             if newUserName != "":
-                saveNewUserName = User.objects.get(id = user.pk)
+                saveNewUserName = User.objects.get(id=user.pk)
                 saveNewUserName.username = newUserName
                 saveNewUserName.save()
         elif 'newNameButton' in request.POST:
             newName = request.POST.get('newName', '')
             if newName != "":
-                saveNewUserName = User.objects.get(id = user.pk)
+                saveNewUserName = User.objects.get(id=user.pk)
                 saveNewUserName.first_name = newName
                 saveNewUserName.save()
         elif 'newUserSurnameButton' in request.POST:
             newUserSurname = request.POST.get('newUserSurname', '')
             if newUserSurname != "":
-                saveNewUserName = User.objects.get(id = user.pk)
+                saveNewUserName = User.objects.get(id=user.pk)
                 saveNewUserName.last_name = newUserSurname
                 saveNewUserName.save()
         elif 'changePasswordButton' in request.POST:
             changePassword = request.POST.get('changePassword', '')
             if changePassword != "":
-                saveNewPassword = User.objects.get(id = user.pk)
+                saveNewPassword = User.objects.get(id=user.pk)
                 saveNewPassword.set_password(changePassword)
                 saveNewPassword.save()
         return render(request, "main/userpanel.html", {'user': user})

@@ -3,7 +3,6 @@
 {% block content %}
 
 <main role="main" class="container">
-
     <div class="starter-template">
         <h1>Wydatki</h1>
         <form method="post" class="addForm">
@@ -24,32 +23,15 @@
             <input type="reset" name="reset" class="btn btn-success" value="Wyczyść formularz">
         </form>
     </div>
-    <table border=1>
-        <tr>
-            <th>Produkt</th>
-            <th>Kategoria</th>
-            <th>Cena</th>
-            <th>Data</th>
-        </tr>
-        {% for da in products %}
-        <tr>
-            <td>{{da.nameOfProduct}}</td>
-            <td>{{da.categoryId}}</td>
-            <td>{{da.price}}</td>
-            <td>{{da.date}}</td>
-        </tr>
-        {% endfor %}
-    </table>
-
     <hr>
-    
     <!-- WYKRES -->
     </div>
     <div class="income-chart">
         <button id="yearButton" type="button" class="btn btn-primary" style="width:80px;">Rok</button>
         <button id="monthButton" type="button" class="btn btn-light"
             style="width:80px; margin-left: 5px;">Miesiąc</button>
-        <input type="number" value="2019" class="form-control" style="width:170px; margin-top: 5px;" name="year" id="yearField">
+        <input type="number" value="2019" class="form-control" style="width:170px; margin-top: 5px;" name="year"
+            id="yearField">
 
         <select id="monthPicker" class="form-control" style="width:170px; margin-top: 5px; display: inline-block;"
             name="month" hidden="">
@@ -66,7 +48,6 @@
             <option value="11">Listopad</option>
             <option value="12">Grudzień</option>
         </select>
-
         <h1>Wykres:</h1>
         <p>
             <h1 id="noDataLabel" hidden="">Brak danych</h1>
@@ -76,7 +57,22 @@
     {{ chartScript | safe}}
     <!-- KONIEC WYKRESU -->
 
+    <table border=1>
+        <tr>
+            <th>Produkt</th>
+            <th>Kategoria</th>
+            <th>Cena</th>
+            <th>Data</th>
+        </tr>
+        {% for da in products %}
+        <tr>
+            <td>{{da.nameOfProduct}}</td>
+            <td>{{da.categoryId}}</td>
+            <td>{{da.price}}</td>
+            <td>{{da.date}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </main>
-
 <hr>
 {% endblock %}
