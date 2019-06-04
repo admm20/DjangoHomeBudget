@@ -110,6 +110,12 @@ function showAnnualExpenses(year) {
             }*/
         }
     });
+
+    if(chartData.length == 0){
+        document.getElementById("noDataLabel").hidden = false;
+    } else {
+        document.getElementById("noDataLabel").hidden = true;
+    }
 }
 
 function showMonthlyExpenses(year, month) {
@@ -204,6 +210,13 @@ function showMonthlyExpenses(year, month) {
             }*/
         }
     });
+
+    if(chartData.length == 0){
+        document.getElementById("noDataLabel").hidden = false;
+    } else {
+        document.getElementById("noDataLabel").hidden = true;
+    }
+
 }
 
 var option = "annual"; // annual / monthly
