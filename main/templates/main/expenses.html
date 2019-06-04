@@ -4,7 +4,7 @@
 
 <main role="main" class="container">
     <div class="starter-template">
-        <h1>Wydatki</h1>
+        <h2>Wydatki</h2>
         <form method="post" class="addForm">
             {% csrf_token %}
             <label>Dodaj nazwę produktu:</label><br>
@@ -20,12 +20,13 @@
             <label>Dodaj datę zakupu:</label><br>
             <input type="date" name="date" required><br>
             <input type="submit" name="submit" class="btn btn-success" value="Dodaj przychody">
-            <input type="reset" name="reset" class="btn btn-success" value="Wyczyść formularz">
+            <input type="reset" name="reset" class="btn btn-success" value="Wyczyść">
         </form>
     </div>
     <hr>
-    <!-- WYKRES -->
-    </div>
+    <!-- WYKRES
+        <h1>Wykres:</h1> -->
+        <h2>Wykres wydatków</h2>
     <div class="income-chart">
         <button id="yearButton" type="button" class="btn btn-primary" style="width:80px;">Rok</button>
         <button id="monthButton" type="button" class="btn btn-light"
@@ -48,7 +49,6 @@
             <option value="11">Listopad</option>
             <option value="12">Grudzień</option>
         </select>
-        <h1>Wykres:</h1>
         <p>
             <h1 id="noDataLabel" hidden="">Brak danych</h1>
             <canvas id="income-chart"></canvas>
@@ -56,7 +56,7 @@
     </div>
     {{ chartScript | safe}}
     <!-- KONIEC WYKRESU -->
-
+    <h2>Historia wydatków</h2>
     <table border=1>
         <tr>
             <th>Produkt</th>
@@ -68,7 +68,7 @@
         <tr>
             <td>{{da.nameOfProduct}}</td>
             <td>{{da.categoryId}}</td>
-            <td>{{da.price}}</td>
+            <td>{{da.price}}zł</td>
             <td>{{da.date}}</td>
         </tr>
         {% endfor %}

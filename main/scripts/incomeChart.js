@@ -35,7 +35,7 @@ function showAnnualIncome(year){
         data: {
             labels: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
             datasets: [{
-                label: 'przychód',
+                label: 'przychód w zł',
                 data: chartData,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -119,7 +119,7 @@ function showMonthlyIncome(year, month){
         data: {
             labels: daysArray,
             datasets: [{
-                label: 'przychód',
+                label: 'przychód w zł',
                 data: chartData,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

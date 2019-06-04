@@ -6,24 +6,24 @@
 
     <div class="starter-template">
         <div class="a">
-            <h1>Przychody</h1>
+            <h2>Przychody</h2>
 
             <form method="post" class="addForm">
                 {% csrf_token %}
-                <label>Dodaj przychody:</label><br>
+                <label>Podaj kwotę:</label><br>
                 <input type="number" name="number" step="0.01" required placeholder="Wpłata"><br>
-                <label>Dodaj datę przychodu:</label><br>
+                <label>Podaj datę przychodu:</label><br>
                 <input type="date" name="date" required><br>
                 <input type="submit" name="submit" class="btn btn-success" value="Dodaj przychody">
-                <input type="reset" name="reset" class="btn btn-success" value="Wyczyść formularz">
+                <input type="reset" name="reset" class="btn btn-success" value="Wyczyść">
             </form>
         </div>
     </div>
     <hr>
 
-    <!-- WYKRES -->
-    <h1>Wykres:</h1>
-
+    <!-- WYKRES 
+    <h1>Wykres:</h1>-->
+    <h2>Wykres przychodów</h2>
     <div class="income-chart">
 
         <button id="yearButton" type="button" class="btn btn-primary" style="width:80px;">Rok</button>
@@ -53,16 +53,17 @@
         <canvas id="income-chart"></canvas>
     </p>
     <!-- KONIEC WYKRESU -->
+    <h2>Historia przychodów</h2>
     <table border=1>
 
         <tr>
-            <th>Money</th>
-            <th>Date</th>
+            <th>Kwota</th>
+            <th>Data</th>
         </tr>
 
         {% for da in dataCash %}
         <tr>
-            <td>{{da.money}}</td>
+            <td>{{da.money}}zł</td>
             <td>{{da.date}}</td>
         </tr>
         {% endfor %}
