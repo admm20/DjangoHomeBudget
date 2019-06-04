@@ -24,7 +24,6 @@
         }
 
         .content {
-            width: 1000px;
             margin: 0 auto;
         }
 
@@ -81,19 +80,32 @@
             background-color: lightgray;
         }
 
-        .incomeForm{
-            width: 400px;
+        .addForm{
+            width: 500px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .incomeForm input, .incomeForm label {
+        .addForm input
+        {
+            width: 200px;
+        }
+
+        .addForm input[type="submit"], .addForm input[type="reset"]
+        {
+            width: 150px;
+        }
+        .addForm input, .addForm label {
             margin: 5px;
         }
 
         .income-chart_choice {
             width: 200px;
             margin: 0 auto;
+        }
+
+        select {
+            width: 200px;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
