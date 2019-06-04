@@ -3,13 +3,13 @@ from django.urls import reverse
 
 # Create your models here.
 
-class Permission(models.Model):
+'''class Permission(models.Model):
     id = models.AutoField(primary_key = True)
     valueOfPermission = models.IntegerField(default=1)
     
 class GroupOfUsers(models.Model):
     id = models.AutoField(primary_key = True)
-    nameOfGroup = models.CharField(max_length = 250 )
+    nameOfGroup = models.CharField(max_length = 250 )'''
 
 class Category(models.Model):
     id = models.AutoField(primary_key = True)
@@ -23,12 +23,12 @@ class Products(models.Model):
     date = models.CharField(max_length = 250)
     userId = models.IntegerField(default=1) 
 
-class Users(models.Model):
+'''class Users(models.Model):
     id = models.AutoField(primary_key=True)
     userName = models.CharField(max_length = 250)
     userPassword = models.CharField(max_length = 250)
     permissionId = models.IntegerField(default=1)
-    groupOfUsersId = models.IntegerField(default=1)
+    groupOfUsersId = models.IntegerField(default=1)'''
 
 class Cash(models.Model):
     id = models.AutoField(primary_key = True)

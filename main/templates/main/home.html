@@ -1,20 +1,68 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<style>
+    body {
+        background-image: url("/static/main/bg-pattern.png"), linear-gradient(to right, #A075FF, #CD44FA);
+    }
 
-    <main role="main" class="container">
-    
-        <div class="starter-template">
-            <h1>Projekt</h1>
-            <p class="lead">Aplikacja do zarządzania budżetem domowym</p>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #212529;
+        color: white;
+        text-align: center;
+    }
+</style>
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="mb-5" style="color: #f5f5f5; font-family: Montserrat; font-size: 40px; max-width: 400px;">
+            <br>
+            Trzymaj kontrolę nad osobistymi lub rodzinnymi finansami przy pomocy programu HomeBudget
+            <br>
+            {% if not user %}
+            <a class="btn btn-outline-light btn-lg" href="/signup">Spróbuj za darmo</a>
+            {% endif %}
         </div>
-    
-    </main>
+        <div class="ml-5 mr-5" style="">
+            <br>
+            <img src="/static/main/front-img2.png" style="width: 250px; height: auto;">
+        </div>
+    </div>
+</div>
 
-    <hr>
-    <!--
-    {% load staticfiles %}
-    <script src="{% static 'main/chartManager.js' %}"></script>
-    -->
+
+
+<!--
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>Projekt</h1>
+        <p class="lead">Aplikacja do zarządzania budżetem domowym</p>
+    </div>
+    <div class="choice">
+        <a href="/accounts/login/">
+            <button>
+                Logowanie
+            </button>
+        </a>
+
+        <a href="/signup/">
+            <button>
+                Rejestracja
+            </button>
+        </a>
+    </div>
+</main>
+<hr>
+-->
+
+
+{% load staticfiles %}
+<script src="{% static 'main/chartManager.js' %}"></script>
 
 {% endblock %}
