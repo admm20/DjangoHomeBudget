@@ -24,7 +24,7 @@ function showAnnualExpenses(year) {
         myChart.destroy();
     }
 
-    let annualData = {};
+    let monthlyData = {};
 
     for (let i = 0; i < expensesData.products.length; i++) {
 
@@ -33,19 +33,19 @@ function showAnnualExpenses(year) {
 
         if (expensesData.products[i].date.substring(0, 4) == year) {
 
-            if(!annualData[category]){
-                annualData[category] = {"sum": 0.0};
+            if(!monthlyData[category]){
+                monthlyData[category] = {"sum": 0.0};
             }
 
-            annualData[category].sum += parseInt(price);
+            monthlyData[category].sum += parseInt(price);
         }
     }
     
-    let chartLabels = Object.keys(annualData);
+    let chartLabels = Object.keys(monthlyData);
     
     let chartData = [];
     for(let i = 0; i<chartLabels.length; i++){
-        chartData.push(annualData[chartLabels[i]].sum);
+        chartData.push(monthlyData[chartLabels[i]].sum);
     }
     
     let chartColor = [];
@@ -118,38 +118,76 @@ function showMonthlyExpenses(year, month) {
         myChart.destroy();
     }
 
-    let ctx = document.getElementById('income-chart').getContext('2d');
+    let monthlyData = {};
 
-    let daysArray = [];
-    for (let i = 1; i <= daysInMonth(month, year); i++) {
-        daysArray.push(i);
-    }
+    for (let i = 0; i < expensesData.products.length; i++) {
 
-    let chartData = [];
-    for (let i = 0; i < daysArray.length; i++) {
-        chartData[i] = 0;
-    }
+        let category = expensesData.products[i].categoryId;
+        let price = expensesData.products[i].price;
 
-    for (let i = 0; i < expensesData.length; i++) {
-        if (dates[i].substring(0, 4) == year) {
-            let mon = parseInt(dates[i].substring(5, 7));
-            if (mon - 1 == month) {
-                chartData[parseInt(dates[i].substring(8, 10)) - 1] += expensesData[i];
+        if (expensesData.products[i].date.substring(0, 4) == year && parseInt(expensesData.products[i].date.substring(5, 7))-1 == month) {
+
+            if(!monthlyData[category]){
+                monthlyData[category] = {"sum": 0.0};
             }
+
+            monthlyData[category].sum += parseInt(price);
         }
     }
+    
+    let chartLabels = Object.keys(monthlyData);
+    
+    let chartData = [];
+    for(let i = 0; i<chartLabels.length; i++){
+        chartData.push(monthlyData[chartLabels[i]].sum);
+    }
+    
+    let chartColor = [];
+    let chartBorderColor = [];
+    for(let i = 0; i<chartLabels.length; i++){
 
+    }
+
+    let ctx = document.getElementById('income-chart').getContext('2d');
     myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'doughnut',
         data: {
-            labels: daysArray,
+            labels: chartLabels,
             datasets: [{
-                label: 'przychód',
+                label: 'Wydatki',
                 data: chartData,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
                 borderWidth: 1
             }]
         },
-        options: {
+        options: {/*
             scales: {
                 yAxes: [{
                     ticks: {
@@ -163,7 +201,7 @@ function showMonthlyExpenses(year, month) {
                         labelString: ''
                     }
                 }]
-            }
+            }*/
         }
     });
 }
