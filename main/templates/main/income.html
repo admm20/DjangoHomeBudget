@@ -4,46 +4,43 @@
 
 <main role="main" class="container">
 
-    <div class="starter-template">
-        <h1>Przychód</h1>
+    <div class="content">
+        <div class="starter-template">
+            <div class = "a">
+            <h1>Przychody</h1>
 
 
-        <form method="post">
-            {% csrf_token %}
-            <input type="number" name="number" step="0.01" required placeholder="Wpłata">
-            <input type="date" name="date" required>
-            <input type="submit" name="submit">
-        </form>
-    </div>
-    <table border=1>
-        <tr>
-            <td>Money</td>
-            <td>Date</td>
-            <td>UserId</td>
-        </tr>
-        {% for da in dataCash %}
-        <tr>
-            <td>{{da.money}}</td>
-            <td>{{da.date}}</td>
-            <td>{{da.userId}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+            <form method="post" class="incomeForm">
+                {% csrf_token %}
+                <label>Dodaj przychody:</label><br>
+                <input type="number" name="number" step="0.01" required placeholder="Wpłata"><br>
+                <label>Dodaj datę przychodu:</label><br>
+                <input type="date" name="date" required><br>
+                <input type="submit" name="submit" class = "btn btn-success" value="Dodaj przychody">
+                <input type="reset" name="reset" class = "btn btn-success" value="Wyczyść formularz">
+            </form>
+        </div>
+        </div>
+        
 
 
-    <hr>
+        <hr>
 
-    <p class="lead">
+        <p class="lead">
 
 
-    </p>
-    </div>
+        </p>
+    
     <!-- WYKRES -->
+    <h1>Wykres:</h1>
+
     <div class="income-chart">
+        <div class="income-chart_choice">
         <button id="yearButton" type="button" class="btn btn-primary" style="width:80px;">Rok</button>
         <button id="monthButton" type="button" class="btn btn-light"
             style="width:80px; margin-left: 5px;">Miesiąc</button>
-        <input type="number" value="2019" class="form-control" style="width:170px; margin-top: 5px;" name="year" id="yearField">
+        <input type="number" value="2019" class="form-control" style="width:170px; margin-top: 5px;" name="year"
+            id="yearField">
 
         <select id="monthPicker" class="form-control" style="width:170px; margin-top: 5px; display: inline-block;"
             name="month" hidden="">
@@ -61,12 +58,28 @@
             <option value="12">Grudzień</option>
         </select>
 
-        <h1>Wykres:</h1>
+        </div>
         <p>
             <canvas id="income-chart"></canvas>
         </p>
     </div>
     <!-- KONIEC WYKRESU -->
+
+    <table border=1>
+        
+        <tr>
+            <th>Money</th>
+            <th>Date</th>
+        </tr>
+        
+        {% for da in dataCash %}
+        <tr>
+            <td>{{da.money}}</td>
+            <td>{{da.date}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
 </main>
 
 

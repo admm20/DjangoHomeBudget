@@ -4,7 +4,7 @@ from django.http import HttpResponse
 # SIGN UP:
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, User
-from main.forms import SignUpForm
+from main.forms import SignUpForm#, ChangePassword
 from django.contrib.auth.models import User
 
 from main.models import Cash, Category, Products
@@ -104,7 +104,7 @@ def expenses(request):
 
         for x in products:
             x.categoryId = Category.objects.get(id = x.categoryId).nameOfCategory
-            
+
         return render(request, "main/expenses.html", {'user': user, 'category': category, 'products': products})
     else:
         return redirect('/home/')
@@ -142,6 +142,29 @@ def userpanel(request):
                 saveNewUserName = User.objects.get(id = user.pk)
                 saveNewUserName.last_name = newUserSurname
                 saveNewUserName.save()
+        '''elif 'changePasswordButton' in request.POST:
+            changePassword = request.POST.get('changePassword', '')
+            if changePassword != "":
+                saveNewPassword = User.objects.get(id = user.pk)
+                saveNewPassword.password = changePassword
+                saveNewPassword.save()
+            '''
+        '''elif 'newPassword' in request.POST:
+            form = ChangePassword(request.POST)
+            if form.is_valid():
+                form.save()
+            else:
+                form = ChangePassword()
+            return render(request, "main/userpanel.html", {'form': form, 'user': user})'''
+        
+
+        '''if request.method == 'POST':
+            form = ChangePassword(request.POST)
+            if form.is_valid():
+                a = form.objects.get(id = user.pk)
+                a.save()
+        else:
+            form = ChangePassword()'''
 
         return render(request, "main/userpanel.html", {'user': user})
     else:

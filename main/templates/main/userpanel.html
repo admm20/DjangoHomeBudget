@@ -34,7 +34,35 @@
                 <input type="submit" name="newUserSurnameButton" value="Add new Surname">
 
             </form>
+            <form method="post">
+                {% csrf_token %}
+            <input type="text" name="changePassword" required placeholder="Password">
+            <input type="submit" name="changePasswordButton" value="Add new Password">
 
+        </form>
+            <!--
+            <hr>
+            <h2 class="h2signup">Zmień hasło</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                  <p>
+                    {{ field.label_tag }}<br>
+                    {{ field }}<br>
+                    <div class = "helptext">
+                    {% if field.help_text %}
+                      <small style="color: grey">{{ field.help_text }}</small>
+                    {% endif %}
+                    </div>
+                    {% for error in field.errors %}
+                      <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                  </p>
+                {% endfor %}
+                <button type="submit" name="newPassword" class="btn btn-success">Utwórz</button>
+                <button type="reset" class="btn btn-success">Reset</button>
+              </form>
+            -->
         </div>
     
     </main>
