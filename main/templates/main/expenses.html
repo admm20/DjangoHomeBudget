@@ -38,6 +38,40 @@
     {% endfor %}
     </table>
 
+    <hr>
+    
+    <!-- WYKRES -->
+    </div>
+    <div class="income-chart">
+        <button id="yearButton" type="button" class="btn btn-primary" style="width:80px;">Rok</button>
+        <button id="monthButton" type="button" class="btn btn-light"
+            style="width:80px; margin-left: 5px;">Miesiąc</button>
+        <input type="number" value="2019" class="form-control" style="width:170px; margin-top: 5px;" name="year" id="yearField">
+
+        <select id="monthPicker" class="form-control" style="width:170px; margin-top: 5px; display: inline-block;"
+            name="month" hidden="">
+            <option value="1">Styczeń</option>
+            <option value="2">Luty</option>
+            <option value="3">Marzec</option>
+            <option value="4">Kwiecień</option>
+            <option value="5">Maj</option>
+            <option value="6">Czerwiec</option>
+            <option value="7">Lipiec</option>
+            <option value="8">Sierpień</option>
+            <option value="9">Wrzesień</option>
+            <option value="10">Październik</option>
+            <option value="11">Listopad</option>
+            <option value="12">Grudzień</option>
+        </select>
+
+        <h1>Wykres:</h1>
+        <p>
+            <canvas id="income-chart"></canvas>
+        </p>
+    </div>
+    {{ chartScript | safe}}
+    <!-- KONIEC WYKRESU -->
+
 </main>
 
 <hr>

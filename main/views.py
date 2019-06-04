@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from main.models import Cash, Category, Products
 
 import re
+import json
 
 
 # Create your views here.
@@ -62,8 +63,8 @@ def income(request):
 
         # insert income from database
         if not dataCash:
-            script = re.sub('[INCOMEDATA]', 'null', script)
-            script = re.sub('[DATES]', 'null', script)
+            script = re.sub('INCOMEDATA', 'null', script)
+            script = re.sub('DATES', 'null', script)
         else:
             incomeData = "["
             dates = "["
@@ -104,8 +105,33 @@ def expenses(request):
 
         for x in products:
             x.categoryId = Category.objects.get(id = x.categoryId).nameOfCategory
+
+        # load data from DB and insert it into <script>
+        script = None
+        with open('main/scripts/expensesChart.js', 'r', encoding='utf-8') as file:
+            script = file.read()
+
+        script = "<script>" + script
+        script = script + "</script>"
+
+        # insert expenses from database
+        if not products:
+            script = re.sub('EXPENSESDATA', 'null', script)
+        else:
+            expensesData = {
+                "products": []
+            }
+            for p in products:
+                expensesData["products"].append({
+                    "price": p.price,
+                    "categoryId": p.categoryId,
+                    "date": p.date,
+                    "nameOfProduct": p.nameOfProduct
+                })
             
-        return render(request, "main/expenses.html", {'user': user, 'category': category, 'products': products})
+            script = re.sub('EXPENSESDATA', json.dumps(expensesData, ensure_ascii=False), script)
+            
+        return render(request, "main/expenses.html", {'user': user, 'chartScript': script, 'category': category, 'products': products})
     else:
         return redirect('/home/')
 
